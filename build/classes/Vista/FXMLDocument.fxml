@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGui.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="772.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ControlGui.FXMLDocumentController">
     <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
+        <Button fx:id="button" layoutX="46.0" layoutY="37.0" onAction="#circulo1" text="Circulo sin relleno" />
+      <Canvas fx:id="lienzo" height="337.0" layoutX="6.0" layoutY="169.0" width="760.0" />
+      <Button layoutX="39.0" layoutY="89.0" mnemonicParsing="false" onAction="#circulo2" text="Circulo con Relleno" />
+      <Button layoutX="334.0" layoutY="37.0" mnemonicParsing="false" onAction="#cuadrado1" text="Cuadrado sin relleno" />
+      <Button layoutX="332.0" layoutY="89.0" mnemonicParsing="false" onAction="#cuadrado2" text="Cuadrado con relleno" />
+      <Button layoutX="575.0" layoutY="37.0" mnemonicParsing="false" onAction="#triangulo1" text="Triangulo sin Relleno" />
+      <Button layoutX="573.0" layoutY="89.0" mnemonicParsing="false" onAction="#Triangulo2" text="Triangulo con Relleno" />
     </children>
 </AnchorPane>
