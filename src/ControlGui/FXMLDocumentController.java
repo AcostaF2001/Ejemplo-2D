@@ -26,8 +26,10 @@ public class FXMLDocumentController implements Initializable {
     private Canvas lienzo;
 
     GraphicsContext g;
-    double arrex[]={0,-100,100};
-    double arrey[]={100,0,0};
+    double arrex[]={100,200,400};
+    double arrey[]={100,20,20};
+    double arrex1[]={50,100,200};
+    double arrey1[]={100,10,10};
 
     @FXML
     private void circulo1(ActionEvent event) {
@@ -40,24 +42,34 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void circulo2(ActionEvent event) {
         
-        g.setFill(Color.RED);
-        g.setFillRule(FillRule.EVEN_ODD);
+        //g.setFill(Color.RED);
+        
         
         g.setStroke(Color.AQUAMARINE);
         g.setLineWidth(3);
         g.strokeOval(100, 100, 50, 50);
+        g.setFill(Color.RED);
+        g.fillOval(100, 100, 50, 50);
+        
+        
     }
 
     @FXML
     private void triangulo1(ActionEvent event) {
-        g.setStroke(Color.CHOCOLATE);
+        
+        g.setStroke(Color.RED);
         g.setLineWidth(3);
         g.strokePolygon(arrex, arrey, 3);
     }
 
     @FXML
     private void Triangulo2(ActionEvent event) {
-
+        
+        g.setStroke(Color.BLUEVIOLET);
+        g.setLineWidth(3);
+        g.strokePolygon(arrex1, arrey1, 3);
+        g.setFill(Color.AQUAMARINE);
+        g.fillPolygon(arrex1, arrey1, 3);
     }
 
     @FXML
@@ -66,6 +78,8 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(Color.CHOCOLATE);
         g.setLineWidth(3);
         g.strokeRect(10, 10, 120, 70);
+        g.setFill(Color.CADETBLUE);
+        g.fillRect(10, 10, 120, 70);
     }
 
     @FXML
@@ -74,6 +88,7 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(Color.DARKCYAN);
         g.setLineWidth(3);
         g.strokeRect(10, 10, 170, 120);
+        
     }
 
     @Override
