@@ -7,10 +7,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="772.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ControlGui.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="528.0" prefWidth="772.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGui.FXMLDocumentController">
     <children>
         <Button fx:id="button" layoutX="46.0" layoutY="37.0" onAction="#circulo1" text="Circulo sin relleno" />
-      <Canvas fx:id="lienzo" height="337.0" layoutX="6.0" layoutY="169.0" width="760.0" />
+      <Canvas fx:id="lienzo" height="337.0" layoutX="6.0" layoutY="169.0" onMouseClicked="#obtenerCoordenadas" onMouseDragged="#pintar" width="760.0" />
       <Button layoutX="39.0" layoutY="89.0" mnemonicParsing="false" onAction="#circulo2" text="Circulo con Relleno" />
       <Button layoutX="334.0" layoutY="37.0" mnemonicParsing="false" onAction="#cuadrado1" text="Cuadrado sin relleno" />
       <Button layoutX="332.0" layoutY="89.0" mnemonicParsing="false" onAction="#cuadrado2" text="Cuadrado con relleno" />

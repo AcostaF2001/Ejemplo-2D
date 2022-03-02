@@ -59,4 +59,11 @@ public class Punto2D {
         this.X = X;
     }
 
+    @Override
+    public String toString() {
+        return  X + ","+ Y ;
+    }
+    
+    
+
 }

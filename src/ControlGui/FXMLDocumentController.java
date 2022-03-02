@@ -5,6 +5,7 @@
  */
 package ControlGui;
 
+import Modelo.Punto2D;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.FillRule;
 
@@ -26,10 +28,14 @@ public class FXMLDocumentController implements Initializable {
     private Canvas lienzo;
 
     GraphicsContext g;
-    double arrex[]={100,200,400};
-    double arrey[]={100,20,20};
-    double arrex1[]={50,100,200};
-    double arrey1[]={100,10,10};
+    double arrex[] = {100, 200, 400};
+    double arrey[] = {100, 20, 20};
+    double arrex1[] = {50, 100, 200};
+    double arrey1[] = {100, 10, 10};
+    
+    double arrax2[]={50};
+    double array2[]={100};
+    
 
     @FXML
     private void circulo1(ActionEvent event) {
@@ -41,22 +47,19 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void circulo2(ActionEvent event) {
-        
+
         //g.setFill(Color.RED);
-        
-        
         g.setStroke(Color.AQUAMARINE);
         g.setLineWidth(3);
         g.strokeOval(100, 100, 50, 50);
         g.setFill(Color.RED);
         g.fillOval(100, 100, 50, 50);
-        
-        
+
     }
 
     @FXML
     private void triangulo1(ActionEvent event) {
-        
+
         g.setStroke(Color.RED);
         g.setLineWidth(3);
         g.strokePolygon(arrex, arrey, 3);
@@ -64,7 +67,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void Triangulo2(ActionEvent event) {
-        
+
         g.setStroke(Color.BLUEVIOLET);
         g.setLineWidth(3);
         g.strokePolygon(arrex1, arrey1, 3);
@@ -74,7 +77,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cuadrado2(ActionEvent event) {
-        
+
         g.setStroke(Color.CHOCOLATE);
         g.setLineWidth(3);
         g.strokeRect(10, 10, 120, 70);
@@ -84,11 +87,44 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void cuadrado1(ActionEvent event) {
-        
+
         g.setStroke(Color.DARKCYAN);
         g.setLineWidth(3);
         g.strokeRect(10, 10, 170, 120);
+
+    }
+
+    @FXML
+    private void obtenerCoordenadas(MouseEvent event) {
+
+//        double x = event.getX();
+//        double y = event.getY();
+//
+//        Punto2D objp = new Punto2D(x, y);
+//
+//        System.out.println("Punto: " + objp.toString());
+//
+//        g.setStroke(Color.BLACK);
+//        g.setLineWidth(4);
+//        g.strokeOval(x, y, 110, 110);
+
+        g.setStroke(Color.RED);
+        g.setLineWidth(3);
+        g.strokePolygon(arrax2, array2, 5);
+
+    }
+
+    @FXML
+    private void pintar(MouseEvent event) {
         
+        double x = event.getX();
+        double y = event.getY();
+        
+        g.setStroke(Color.BLACK);
+        g.setLineWidth(5);
+        g.strokeLine(x, y, x, y);
+        
+
     }
 
     @Override
