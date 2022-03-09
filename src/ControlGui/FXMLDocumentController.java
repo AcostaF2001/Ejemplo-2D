@@ -33,8 +33,11 @@ public class FXMLDocumentController implements Initializable {
     double arrex1[] = {50, 100, 200};
     double arrey1[] = {100, 10, 10};
     
-    double arrax2[]={50};
-    double array2[]={100};
+    double []arrax2;
+    double []array2;
+    
+    double coordenadax;
+    double coordenaday;
     
 
     @FXML
@@ -97,20 +100,20 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void obtenerCoordenadas(MouseEvent event) {
 
-//        double x = event.getX();
-//        double y = event.getY();
+        coordenadax = event.getX();
+        coordenaday = event.getY();
 //
-//        Punto2D objp = new Punto2D(x, y);
-//
-//        System.out.println("Punto: " + objp.toString());
+        Punto2D objp = new Punto2D(coordenadax, coordenaday );
+
+        System.out.println("Punto: " + objp.toString());
 //
 //        g.setStroke(Color.BLACK);
 //        g.setLineWidth(4);
 //        g.strokeOval(x, y, 110, 110);
 
-        g.setStroke(Color.RED);
-        g.setLineWidth(3);
-        g.strokePolygon(arrax2, array2, 5);
+//        g.setStroke(Color.RED);
+//        g.setLineWidth(3);
+//        g.strokePolygon(arrax2, array2, 5);
 
     }
 
@@ -126,6 +129,42 @@ public class FXMLDocumentController implements Initializable {
         
 
     }
+    
+    @FXML
+    private void generarhexagono(ActionEvent event) {
+        arrax2= new double[6];
+        array2= new double[6];
+        
+        double r=100;
+        double pi= 2*Math.PI/6;
+        
+        
+        arrax2[0]=coordenadax+100;
+        array2[0]=coordenaday;
+        
+        arrax2[1]= Math.cos(pi*r);
+        array2[1]=Math.sin(pi*r);
+        
+        arrax2[2]= Math.cos((2+pi)*r);
+        array2[2]=Math.sin((2+pi)*r);
+        
+        arrax2[3]= Math.cos((3+pi)*r);
+        array2[3]=Math.sin((3+pi)*r);
+        
+        arrax2[4]= Math.cos((4+pi)*r);
+        array2[4]=Math.sin((4+pi)*r);
+        
+        arrax2[5]= Math.cos((5+pi)*r);
+        array2[5]=Math.sin((5+pi)*r);
+        
+        arrax2[6]= Math.cos((6+pi)*r);
+        array2[6]=Math.sin((6+pi)*r);
+        
+        g.setStroke(Color.BLUEVIOLET);
+        g.strokePolygon(arrax2, array2, 0);
+        
+    }
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
