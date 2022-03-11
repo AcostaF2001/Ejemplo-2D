@@ -17,5 +17,7 @@
       <Button layoutX="575.0" layoutY="37.0" mnemonicParsing="false" onAction="#triangulo1" text="Triangulo sin Relleno" />
       <Button layoutX="573.0" layoutY="89.0" mnemonicParsing="false" onAction="#Triangulo2" text="Triangulo con Relleno" />
       <Button layoutX="205.0" layoutY="138.0" mnemonicParsing="false" onAction="#generarhexagono" text="Hexagono" />
+      <Button layoutX="502.0" layoutY="138.0" mnemonicParsing="false" onAction="#generarpentagono" text="Pentagono" />
+      <Button layoutX="356.0" layoutY="138.0" mnemonicParsing="false" onAction="#generarValores" text="EjemploMap" />
     </children>
 </AnchorPane>
