@@ -7,7 +7,10 @@ package ControlGui;
 
 import Modelo.Punto2D;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,15 +36,17 @@ public class FXMLDocumentController implements Initializable {
     double arrey[] = {100, 20, 20};
     double arrex1[] = {50, 100, 200};
     double arrey1[] = {100, 10, 10};
-    
+
     double[] x;
     double[] y;
-    
+
     double coordenadaX;
     double coordenadaY;
-    
+
     double r;
     LinkedList<Punto2D> listap;
+
+    HashMap<String, LinkedList<Punto2D>> mapaEjemplo;
 
     @FXML
     private void circulo1(ActionEvent event) {
@@ -106,7 +111,7 @@ public class FXMLDocumentController implements Initializable {
         coordenadaX = event.getX();
         coordenadaY = event.getY();
 //
-        Punto2D objp = new Punto2D(coordenadaX, coordenadaY );
+        Punto2D objp = new Punto2D(coordenadaX, coordenadaY);
 
         System.out.println("Punto: " + objp.toString());
 //
@@ -117,29 +122,27 @@ public class FXMLDocumentController implements Initializable {
 //        g.setStroke(Color.RED);
 //        g.setLineWidth(3);
 //        g.strokePolygon(arrax2, array2, 5);
-
     }
 
     @FXML
     private void pintar(MouseEvent event) {
-        
+
         double x = event.getX();
         double y = event.getY();
-        
+
         g.setStroke(Color.BLACK);
         g.setLineWidth(5);
         g.strokeLine(x, y, x, y);
-        
 
     }
-    
+
     @FXML
     private void generarhexagono(ActionEvent event) {
         x = new double[6];
         y = new double[6];
-        
-        listap=new LinkedList<>();
-        
+
+        listap = new LinkedList<>();
+
         x[0] = (coordenadaX + r);
         y[0] = coordenadaY;
         x[1] = coordenadaX + (r * Math.cos(2 * Math.PI / 6));
@@ -155,20 +158,21 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(Color.BLUE);
         g.setLineWidth(3);
         g.strokePolygon(x, y, 6);
-        
+
         for (int i = 0; i < x.length; i++) {
             listap.add(new Punto2D(x[i], y[i]));
-            
+
         }
-        
+        mapaEjemplo.put("Hexagono", listap);
+
     }
-    
+
     @FXML
     private void generarpentagono(ActionEvent event) {
         x = new double[5];
         y = new double[5];
-        
-        listap=new LinkedList<>();
+
+        listap = new LinkedList<>();
 
         x[0] = (coordenadaX + r);
         y[0] = coordenadaY;
@@ -184,19 +188,44 @@ public class FXMLDocumentController implements Initializable {
         g.setStroke(Color.BLUE);
         g.setLineWidth(3);
         g.strokePolygon(x, y, 5);
-        
+
         for (int i = 0; i < x.length; i++) {
             listap.add(new Punto2D(x[i], y[i]));
-            
+
+        }
+        mapaEjemplo.put("Pentagono", listap);
+    }
+
+    @FXML
+    private void generarValores(ActionEvent event) {
+
+//        mapaEjemplo.put(78, "david");
+//        mapaEjemplo.put(7, "sofia");
+//        mapaEjemplo.put(8, "mario");
+//        mapaEjemplo.put(43, "Antonio");
+//        mapaEjemplo.put(0, "Maria");
+
+
+
+        Iterator<Map.Entry<String, LinkedList<Punto2D>>> entries = mapaEjemplo.entrySet().iterator();
+
+        while (entries.hasNext()) {
+            Map.Entry< String,LinkedList<Punto2D>> next = entries.next();
+            System.out.println("Key: " + next.getKey());
+            for (int i = 0; i < next.getValue().size(); i++) {
+                Punto2D punto= listap.get(i);
+                System.out.println("Puntos"+punto.toString()+"\n");
+            }
+
         }
     }
-    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         g = lienzo.getGraphicsContext2D();
-        r=100;
+        mapaEjemplo = new HashMap<>();
+        r = 100;
         double w = lienzo.getWidth();
         double h = lienzo.getHeight();
 
