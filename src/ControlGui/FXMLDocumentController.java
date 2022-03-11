@@ -7,6 +7,7 @@ package ControlGui;
 
 import Modelo.Punto2D;
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,12 +34,14 @@ public class FXMLDocumentController implements Initializable {
     double arrex1[] = {50, 100, 200};
     double arrey1[] = {100, 10, 10};
     
-    double []arrax2;
-    double []array2;
+    double[] x;
+    double[] y;
     
-    double coordenadax;
-    double coordenaday;
+    double coordenadaX;
+    double coordenadaY;
     
+    double r;
+    LinkedList<Punto2D> listap;
 
     @FXML
     private void circulo1(ActionEvent event) {
@@ -100,10 +103,10 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void obtenerCoordenadas(MouseEvent event) {
 
-        coordenadax = event.getX();
-        coordenaday = event.getY();
+        coordenadaX = event.getX();
+        coordenadaY = event.getY();
 //
-        Punto2D objp = new Punto2D(coordenadax, coordenaday );
+        Punto2D objp = new Punto2D(coordenadaX, coordenadaY );
 
         System.out.println("Punto: " + objp.toString());
 //
@@ -132,37 +135,60 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private void generarhexagono(ActionEvent event) {
-        arrax2= new double[6];
-        array2= new double[6];
+        x = new double[6];
+        y = new double[6];
         
-        double r=100;
-        double pi= 2*Math.PI/6;
+        listap=new LinkedList<>();
         
+        x[0] = (coordenadaX + r);
+        y[0] = coordenadaY;
+        x[1] = coordenadaX + (r * Math.cos(2 * Math.PI / 6));
+        y[1] = coordenadaY - (r * Math.sin(2 * Math.PI / 6));
+        x[2] = coordenadaX + (r * Math.cos(2 * 2 * Math.PI / 6));
+        y[2] = coordenadaY - (r * Math.sin(2 * 2 * Math.PI / 6));
+        x[3] = coordenadaX + (r * Math.cos(3 * 2 * Math.PI / 6));
+        y[3] = coordenadaY - (r * Math.sin(3 * 2 * Math.PI / 6));
+        x[4] = coordenadaX + (r * Math.cos(4 * 2 * Math.PI / 6));
+        y[4] = coordenadaY - (r * Math.sin(4 * 2 * Math.PI / 6));
+        x[5] = coordenadaX + (r * Math.cos(5 * 2 * Math.PI / 6));
+        y[5] = coordenadaY - (r * Math.sin(5 * 2 * Math.PI / 6));
+        g.setStroke(Color.BLUE);
+        g.setLineWidth(3);
+        g.strokePolygon(x, y, 6);
         
-        arrax2[0]=coordenadax+100;
-        array2[0]=coordenaday;
+        for (int i = 0; i < x.length; i++) {
+            listap.add(new Punto2D(x[i], y[i]));
+            
+        }
         
-        arrax2[1]= Math.cos(pi*r);
-        array2[1]=Math.sin(pi*r);
+    }
+    
+    @FXML
+    private void generarpentagono(ActionEvent event) {
+        x = new double[5];
+        y = new double[5];
         
-        arrax2[2]= Math.cos((2+pi)*r);
-        array2[2]=Math.sin((2+pi)*r);
+        listap=new LinkedList<>();
+
+        x[0] = (coordenadaX + r);
+        y[0] = coordenadaY;
+        x[1] = coordenadaX + (r * Math.cos(2 * Math.PI / 5));
+        y[1] = coordenadaY - (r * Math.sin(2 * Math.PI / 5));
+        x[2] = coordenadaX + (r * Math.cos(2 * 2 * Math.PI / 5));
+        y[2] = coordenadaY - (r * Math.sin(2 * 2 * Math.PI / 5));
+        x[3] = coordenadaX + (r * Math.cos(3 * 2 * Math.PI / 5));
+        y[3] = coordenadaY - (r * Math.sin(3 * 2 * Math.PI / 5));
+        x[4] = coordenadaX + (r * Math.cos(4 * 2 * Math.PI / 5));
+        y[4] = coordenadaY - (r * Math.sin(4 * 2 * Math.PI / 5));
+
+        g.setStroke(Color.BLUE);
+        g.setLineWidth(3);
+        g.strokePolygon(x, y, 5);
         
-        arrax2[3]= Math.cos((3+pi)*r);
-        array2[3]=Math.sin((3+pi)*r);
-        
-        arrax2[4]= Math.cos((4+pi)*r);
-        array2[4]=Math.sin((4+pi)*r);
-        
-        arrax2[5]= Math.cos((5+pi)*r);
-        array2[5]=Math.sin((5+pi)*r);
-        
-        arrax2[6]= Math.cos((6+pi)*r);
-        array2[6]=Math.sin((6+pi)*r);
-        
-        g.setStroke(Color.BLUEVIOLET);
-        g.strokePolygon(arrax2, array2, 0);
-        
+        for (int i = 0; i < x.length; i++) {
+            listap.add(new Punto2D(x[i], y[i]));
+            
+        }
     }
     
 
@@ -170,7 +196,7 @@ public class FXMLDocumentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         g = lienzo.getGraphicsContext2D();
-
+        r=100;
         double w = lienzo.getWidth();
         double h = lienzo.getHeight();
 
